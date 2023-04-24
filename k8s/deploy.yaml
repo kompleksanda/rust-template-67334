@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: console-project
+  name: section-project-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: console-project
+  template:
+    metadata:
+      labels:
+        app: console-project
+    spec:
+      containers:
+        - name: console-project
+          image: ghcr.io/${IMAGE_NAME}:main
+          imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: ".1"
+              memory: ".1Gi"
+            limits:
+              cpu: ".1"
+              memory: ".1Gi"
+          ports:
+            - containerPort: 8080
